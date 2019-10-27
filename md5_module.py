@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#/usr/bin/env python3
 
 
 
@@ -7,8 +7,6 @@ import subprocess
 
 
 # Define the new file from the command line.
-new_file = sys.argv[1]
-
 
 # run MD5 on new file with subprocess
 def load_md5(new_file):
@@ -19,6 +17,10 @@ def load_md5(new_file):
 	stdout = stdout.decode("utf-8")
 	return stdout
 
+print(__name__)
 
+if __name__ == '__main__':
+	new_file = sys.argv[1]
+	print(load_md5(new_file))
 
 
