@@ -10,7 +10,7 @@ print('<html><head>')
 print ('<title>Project Damnit Input Form</title>')  # add a title
 print ('</head>')
 print ('<body>')
-print('<form method=POST action="cgi-bin/test_cgi.py">')
+print('<form method=POST action="./test_cgi.py">')
 print('New File <input type=text name=NewFile>')
 print('<input type=submit value="Upload File", name=button>')
 print('</form>')
