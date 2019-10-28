@@ -9,13 +9,12 @@ import shutil
 
 DamnitPath = '.damnit/'
 
-def find_diff(new_file, old_file):
-	file_diff = subprocess.run(['diff', new_file, old_file], stdout = subprocess.PIPE)
-	file_stdout = file_diff.stdout
-	diff_list = file_stdout.split()
-	return diff_list 
-# the code in the command line: diff --unified=0 new_file, old_file
-
+def find_diff(new_file, old_file, oldMD5):
+	string = "diff {} {} > {}.patch"
+	command = string.format(new_file,old_file,oldMD5)
+	subprocess.run(command, shell = True)
+# the code in the command line: diff new_file old_file >filename
+# apparently we don't need --unified=0
 
 def load_patch_dict(FileNameDictionary, md5Graph_NewToOld):
 	for indivFile in fileList:
@@ -32,14 +31,16 @@ def load_patch_dict(FileNameDictionary, md5Graph_NewToOld):
 			# 4) copy the file to DamnitPath directory the name of this file is the MD5
 			# 5) copy the Patch to the DamnitPath directory, the name is the old MD5
 			# !!!!!!!!!!! this will overwright the old file, and all the data in it. !!!!!!!!
-				difference = find_diff(indivFile, (DamnitPath + oldMD5)) # this is the patch
+				difference = find_diff(indivFile, (DamnitPath + oldMD5), oldMD5) # this is the patch
+				shutil.copyfile(indivFile, (DamnitPath+newMD5))
+				shutil.copyfile((oldMD5+".patch"), (DamnitPath + oldMD5))
 				md5Graph_NewToOld[newMD5] = oldMD5 # add in the new md5 as a key, the old md5 is the value
 				FileNameDictionary[indivFile] = newMD5 # the file name is now linked to the new MD5 (old one lost)
-				with open(sys.argv[1], "w") as newFileDict:
-					json.dump(FileNameDictionary, newFileDict)
-				with open("md5Graph_NewToOld.json", "w") as newPatch:
-					json.dump(md5Graph_NewToOld, newPatch) # open the file as write, save new dict
-
+#				with open(sys.argv[1], "w") as newFileDict:
+#					json.dump(FileNameDictionary, newFileDict)
+#				with open("md5Graph_NewToOld.json", "w") as newPatch:
+#					json.dump(md5Graph_NewToOld, newPatch) # open the file as write, save new dict
+				#shutil.copyfile(
 
 				print(indivFile,difference, "has changed")
 		else: # now the file name is not tracked, and it is not in the dictionary
@@ -48,6 +49,7 @@ def load_patch_dict(FileNameDictionary, md5Graph_NewToOld):
 		# 2) save the new filename dictionary
 		# 3) add the file to the the graph dictionary.
 		# 4) save the graph dictionary
+			shutil.copyfile(indivFile, (DamnitPath+newMD5))
 			newFilemd5 = load_md5(indivFile) # for this new file get a new md5
 			FileNameDictionary[indivFile] = newFilemd5 # add it to the file name dictionary
 			with open(sys.argv[1], "w") as newFileDict:
@@ -61,5 +63,6 @@ def load_patch_dict(FileNameDictionary, md5Graph_NewToOld):
 
 if __name__ == '__main__':
 	fnd = json.load(open(sys.argv[1], "r")) # open the file name dictionary
+	md5dict = json.load(open(sys.argv[2], "r"))
 	fileList = glob.glob('*.fasta') # search for new files
-	load_patch_dict(fnd) # run the load patch function
+	load_patch_dict(fnd, md5dict) # run the load patch function
