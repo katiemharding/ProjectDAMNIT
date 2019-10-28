@@ -57,5 +57,5 @@ no change to test5LinesEcoli.fasta
 test3LinesEcoli.fasta has changed
 {'ecoli.unitigs.fasta': 'bf986c5d5d7bd5383a35ad0994114c2e', 'test5LinesEcoli.fasta': 'd302ff065ee17448b9837c79307ae720', 'test3LinesEcoli.fasta': 'fcf06288dd32ad061c4d25d9f11b6dab'}
 
-
-
+(base) info14:.damnit info$ vi md5Graph_NewToOld.json
+{"1c97ae03b019b12be7f6f2667c9023d7": "none", "d302ff065ee17448b9837c79307ae720": "1c97ae03b019b12be7f6f2667c9023d7", "dd5d447d0ebe6725eed0308b699036b8": "none", "fcf06288dd32ad061c4d25d9f11b6dab": "dd5d447d0ebe6725eed0308b699036b8"}
