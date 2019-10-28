@@ -1,0 +1,61 @@
+Error checking
+
+
+
+# checking the generateNewPatch.py script
+1) what happens with new file?
+(base) info14:ProjectDAMNIT info$ python3 generateNewPatch.py
+md5_module
+new file test5LinesEcoli.fasta
+{'ecoli.unitigs.fasta': 'bf986c5d5d7bd5383a35ad0994114c2e', 'test5LinesEcoli.fasta': '1c97ae03b019b12be7f6f2667c9023d7'}
+(base) info14:ProjectDAMNIT info$ cd .damnit/
+(base) info14:.damnit info$ ls
+1c97ae03b019b12be7f6f2667c9023d7	md5Graph_NewToOld.json			quickDict.json
+(base) info14:.damnit info$ vi quickDict.json
+(base) info14:.damnit info$ ls -lth
+total 24
+-rw-r--r--  1 info  staff    44B Oct 28 09:44 md5Graph_NewToOld.json
+-rw-r--r--  1 info  staff   181B Oct 28 09:44 quickDict.json
+-rw-r--r--  1 info  staff   517B Oct 28 09:44 1c97ae03b019b12be7f6f2667c9023d7
+
+# the file was written and the dictionaries were updated
+
+base) info14:ProjectDAMNIT info$ python3 generateNewPatch.py
+md5_module
+test5LinesEcoli.fasta has changed
+new file test3LinesEcoli.fasta
+{'ecoli.unitigs.fasta': 'bf986c5d5d7bd5383a35ad0994114c2e', 'test5LinesEcoli.fasta': 'd302ff065ee17448b9837c79307ae720', 'test3LinesEcoli.fasta': 'dd5d447d0ebe6725eed0308b699036b8'}
+# note that test5LinesEcoli.fasta has a new value
+# and that test3linesEcoli.fast has been added (the print statements above confrim this)
+(base) info14:ProjectDAMNIT info$ cd .damnit/
+(base) info14:.damnit info$ ls -lth
+total 40
+-rw-r--r--  1 info  staff   160B Oct 28 09:57 md5Graph_NewToOld.json
+-rw-r--r--  1 info  staff   181B Oct 28 09:57 quickDict.json
+-rw-r--r--  1 info  staff   226B Oct 28 09:57 dd5d447d0ebe6725eed0308b699036b8 # the whole test3LinesEcoli.fasta file
+-rw-r--r--  1 info  staff   218B Oct 28 09:57 1c97ae03b019b12be7f6f2667c9023d7 # the patch (changed notes for the test5LinesEcoli.fasta)
+-rw-r--r--  1 info  staff   521B Oct 28 09:57 d302ff065ee17448b9837c79307ae720 # the new whole test3LinesEcoli.fasta file
+
+(base) info14:.damnit info$ vi d302ff065ee17448b9837c79307ae720
+# file contents:
+  1 >tig00000001 len=4639164 reads=9483 covStat=1.00 gappedBases=no class=contig suggestRepeat=no suggestCircular=no
+  2 ccccTCTGCTGCAAACGTTTAGCGTCTTCCAGCAACAATGCGATCACATGCTTCAAATTCTGCTCATTCATCTATTCTCTCCACTGAAATCATCCGCTAACGAA
+  3 TCATCCCGGTCTTCGTACGTACCGGGCGGGCTACTTCGTGGGCGTCCTGCCTGTTTGTTGTTTCTCTTGGTACATTATGTATCTCAAAGGTACATTGTCA
+  4 AGTATAAAAAAAACCTGCCGAAGCAGGTTCATAAACATTGATTAGGCTTTGATTTTGTATCTTCTTGGTTTTCCTGAGAAAATCACAGTACCAATTATAG
+  5 AGCAATTACCGTTGATCTTAATGTAAGGCTCAGGCCAGTTTGGGTTTAACGCTTTGAGATAACGCTGTGTCCCATCTTCTATCAACCTTTTGAAGGTGGT
+
+(base) info14:.damnit info$ vi 1c97ae03b019b12be7f6f2667c9023d7
+# file contents:
+  1 2c2
+  2 < ccccTCTGCTGCAAACGTTTAGCGTCTTCCAGCAACAATGCGATCACATGCTTCAAATTCTGCTCATTCATCTATTCTCTCCACTGAAATCATCCGCTAACGAA
+  3 ---
+  4 > TCTGCTGCAAACGTTTAGCGTCTTCCAGCAACAATGCGATCACATGCTTCAAATTCTGCTCATTCATCTATTCTCTCCACTGAAATCATCCGCTAACGAA
+
+(base) info14:ProjectDAMNIT info$ python3 generateNewPatch.py
+md5_module
+no change to test5LinesEcoli.fasta
+test3LinesEcoli.fasta has changed
+{'ecoli.unitigs.fasta': 'bf986c5d5d7bd5383a35ad0994114c2e', 'test5LinesEcoli.fasta': 'd302ff065ee17448b9837c79307ae720', 'test3LinesEcoli.fasta': 'fcf06288dd32ad061c4d25d9f11b6dab'}
+
+
+
