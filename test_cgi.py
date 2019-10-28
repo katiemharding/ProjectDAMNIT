@@ -17,11 +17,11 @@ print('<input type=submit value="Upload File", name=button>')
 print('</form>')
 if 'NewFile' in form:
     print('Hello<br>')
-    if form['NewFile'].file:
-        print("A")
-        for line in form['NewFile'].file:
+    if form['NewFile'].value:
+        print("did the file load?")
+        for line in form['NewFile'].value:
             print(line)
-            print("B")
+            print("file loaded")
 print('</body>')
 print('</html>')
 
