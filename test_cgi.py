@@ -11,11 +11,15 @@ print ('<title>Project Damnit Input Form</title>')  # add a title
 print ('</head>')
 print ('<body>')
 print('<form method=POST action="./test_cgi.py">')
-print('New File <input type=text name=NewFile>')
+print('<h1>Please select a file to upload'
+print('New File <input type=file name=NewFile>')
 print('<input type=submit value="Upload File", name=button>')
 print('</form>')
 if 'NewFile' in form:
-    print('Hello')
+    print('Hello<br>')
+    if form['NewFile'].file:
+        for line in form['NewFile'].file:
+            print(line)
 print('</body>')
 print('</html>')
 
