@@ -31,15 +31,13 @@ def all_file_name_dict():
 
 	# Create filenames file
 	fo_filenames = open(".damnit/filenames_dict.json" , "w")
-	filenames_dict = str(filenames_dict)
-	fo_filenames.write(filenames_dict)
+	json.dump(filenames_dict, fo_filenames)
 	fo_filenames.close()
 	print(filenames_dict)
 
 	# Create md5 file
 	fo_md5 = open(".damnit/md5_dict.json" , "w")
-	md5_dict = str(md5_dict)
-	fo_md5.write(md5_dict)
+	json.dump(md5_dict, fo_md5)
 	fo_md5.close()
 	print(md5_dict)
 	
@@ -48,5 +46,7 @@ def all_file_name_dict():
 
 if __name__ == '__main__':
 	all_file_name_dict()
+
+
 
 
