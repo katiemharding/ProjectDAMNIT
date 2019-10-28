@@ -17,7 +17,8 @@ try:
 	FileNameDictionary = json.load(open(FileNameDictionary_location, "r")) # open the file name dictionary
 	if File_Name in FileNameDictionary:
 		print("file found:", File_Name)
-		print(File_Name)
+		with open(DamnitPath, FileNameDictionary[File_name]) as fileobject:
+			print(fileobject)
 
 except IndexError:
 	print("Please provide file Name")
