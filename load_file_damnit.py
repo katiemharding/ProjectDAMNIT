@@ -50,7 +50,8 @@ if 'NewFile' in form:
         fn = '/'.join([DirectoryPath, os.path.basename(fileitem.filename)])
          
         open(fn, 'wb').write(fileitem.file.read())
-        cks = load_md5(fn) 
+        cks = load_md5(fn)
+        load_patch_dict(fn, filenames_dict.json, md5_dict.json) 
         message = 'The file "' + os.path.basename(fileitem.filename) + '" was uploaded successfully ({})'.format(cks)
         print(fileitem, '<br>')
     else:
