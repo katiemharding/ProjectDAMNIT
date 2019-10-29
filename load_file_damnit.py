@@ -33,7 +33,7 @@ print('<h1>Please select a file to upload</h1>')
 print('New File <input type=file name=NewFile><br>')
 #print('File Name Dictionary <input type=file name=NewFileDict><br>')
 #print('md5 Dictionary <input type=file name=NewMd5Dict><br>')
-print('<input type=submit value="Upload File", name=button>')
+print('When ready to test file: <input type=submit value="Test File", name=button>')
 print('</form>')
 message = 'please select and submit a file'
 if 'NewFile' in form:
@@ -53,14 +53,19 @@ if 'NewFile' in form:
          
         open(fn, 'wb').write(fileitem.file.read())
         cks = load_md5(fn)
-        status_damnit(fn, DirectoryPath) 
         message = 'The file "' + os.path.basename(fileitem.filename) + '" was uploaded successfully ({})'.format(cks)
-        print(fileitem, '<br>')
+        print(message)
+        print('<br>')
+        status_damnit(fn, DirectoryPath) 
+        #print('<br>Upload Now <input type=file name=upload><br>')
+        #print('When ready upload file: <input type=submit value="Upload File", name=uploadbutton>')
+        #if uploadbutton in form:
+        #load_patch_dict(fn, DirectoryPath)
+        print('<br>')
+         
     else:
         message = 'please select and submit another file'
-    
-print("did the file load?<br>")
-print(message)
+        print(message)
 print('</body>')
 print('</html>')
 
