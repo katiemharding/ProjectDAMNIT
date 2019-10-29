@@ -1,1 +1,4 @@
 cp test_cgi.py /usr/lib/cgi-bin/test_cgi.py
+
+http://damnit.programmingforbiology.org/cgi-bin/load_file_damnit.py
+
