@@ -47,13 +47,12 @@ if 'NewFile' in form:
     if fileitem.filename:
     # strip leading path from file name
     # to avoid directory traversal attacks
-        fn = os.path.basename(fileitem.filename)
+        fn = '/'.join([DirectoryPath, os.path.basename(fileitem.filename)])
          
-        open('/projects/damnit/share/.damnit/' + fn, 'wb').write(fileitem.file.read())
-    
-        message = 'The file "' + fn + '" was uploaded successfully'
+        open(fn, 'wb').write(fileitem.file.read())
+        cks = load_md5(fn) 
+        message = 'The file "' + os.path.basename(fileitem.filename) + '" was uploaded successfully ({})'.format(cks)
         print(fileitem, '<br>')
-        status_damnit(fileitem.filename, DirectoryPath)
     else:
         message = 'please select and submit another file'
     
