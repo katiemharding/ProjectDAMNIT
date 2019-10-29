@@ -27,4 +27,20 @@ We have been developing a file storage system that will use AWS to store large f
 
 ### Some cool things we have learned:
 
+#### How to initialize a directory:
+what did you learn while working on this part?
+
+#### What are check sums, what do they do.  
+ show load_md5 code
+
+#### Steps in adding new files and comparing them
+
+#### building a website on aws
+
+-Python scripts can create html websites using print statements (demo code)
+-how to upload files to aws using git
+-how to upload files to aws using the command line
+
+
 ### and a demo link
+
