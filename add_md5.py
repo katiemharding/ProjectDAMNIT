@@ -11,7 +11,7 @@ from md5_module import load_md5
 # Define imported file name
 #new_file = sys.argv[1]
 
-def add_damnit():
+def add_damnit(new_file, damnit_path = '.damnit'):
 	# Check if file exists
 	if os.path.exists(new_file):
 		print ('File is real')
@@ -24,10 +24,10 @@ def add_damnit():
 
 
 	# Open and read md5Graph_NewToOld.json file
-	original_md5Graph = read_json(".damnit/md5Graph_NewToOld.json")
+	original_md5Graph = read_json(damnit_path + "/md5Graph_NewToOld.json")
 
 	# Open and read filenames_dict.json file
-	filenames_dict = read_json(".damnit/filenames_dict.json")
+	filenames_dict = read_json(damnit_path + "/filenames_dict.json")
 
 
 	# Check if md5 exists in md5_dict.json file
@@ -36,13 +36,13 @@ def add_damnit():
 		add_filenames_dict = {}
 		add_filenames_dict[new_file] = md5
 		filenames_dict.update(add_filenames_dict)
-		write_filenames_dict = write_json(".damnit/filenames_dict.json", filenames_dict)
+		write_filenames_dict = write_json(damnit_path + "/filenames_dict.json", filenames_dict)
 	else:
 		print('File does not exist in md5Graph_NewToOld.json')
 		add_md5_to_md5Graph = {}
 		add_md5_to_md5Graph[md5] = "none"
 		original_md5Graph.update(add_md5_to_md5Graph)
-		write_md5Graph_dict = write_json(".damnit/md5Graph_NewToOld.json", original_md5Graph)
+		write_md5Graph_dict = write_json(damnit_path + "/md5Graph_NewToOld.json", original_md5Graph)
 
 		if new_file in filenames_dict:
 			print('File exists in filesnames_dict.json')
@@ -52,7 +52,7 @@ def add_damnit():
 			add_filenames_dict = {}
 			add_filenames_dict[new_file] = md5
 			filenames_dict.update(add_filenames_dict)
-			write_filenames_dict = write_json(".damnit/filenames_dict.json", filenames_dict)		
+			write_filenames_dict = write_json(damnit_path + "/filenames_dict.json", filenames_dict)		
 
 			# Add unkown md5 file to md5Graph_NewToOld.json file
 			add_md5_to_md5Graph = {}

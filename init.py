@@ -7,16 +7,16 @@ import glob
 from md5_module import load_md5
 
 
-def make_damnit():
-	if os.path.exists('.damnit'):
+def make_damnit(new_file, damnit_path = '.damnit'):
+	if os.path.exists(damnit_path):
 		print('Folder exits')
 	else:
 		print('Folder does not exists')
 		print('Making .damnit folder')
-		os.mkdir('.damnit')
+		os.mkdir(damnit_path)
 
-def all_file_name_dict():
-	make_damnit()
+def all_file_name_dict(damnit_path = '.damnit'):
+	make_damnit(damnit_path)
 	# Find all files in dictionary.
 	filenames = glob.glob('*')
 	filenames_dict = {}
@@ -30,13 +30,13 @@ def all_file_name_dict():
 			md5_dict[md5] = filename
 
 	# Create filenames file
-	fo_filenames = open(".damnit/filenames_dict.json" , "w")
+	fo_filenames = open(damnit_path + "/filenames_dict.json" , "w")
 	json.dump(filenames_dict, fo_filenames)
 	fo_filenames.close()
 	print(filenames_dict)
 
 	# Create md5 file
-	fo_md5 = open(".damnit/md5_dict.json" , "w")
+	fo_md5 = open(damnit_path + "/md5_dict.json" , "w")
 	json.dump(md5_dict, fo_md5)
 	fo_md5.close()
 	print(md5_dict)
