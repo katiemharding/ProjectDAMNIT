@@ -19,14 +19,13 @@ print('<h1>Please select a file to upload</h1>')
 print('New File <input type=file name=NewFile>')
 print('<input type=submit value="Upload File", name=button>')
 print('</form>')
-
+message = 'empty message'
 if 'NewFile' in form:
     print('Hello<br>')
     if form['NewFile'].value:
         print("did the file load?")
-        for line in form['NewFile'].value:
-            print(line)
-            print("file loaded")
+        print(form['NewFile'].value)
+        print("file loaded")
 
 #fileitem = form['NewFile']
 
