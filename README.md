@@ -34,12 +34,28 @@ what did you learn while working on this part?
  show load_md5 code
 
 #### Steps in adding new files and comparing them
+adding some code to test
+
+~~~~~~
+createDict = {}
+print(createDict)
+
+
+createDict['file_name1'] = 'askdjfhsdflakjsdhfalkdjf'
+createDict['file_name2'] = 'aksdjfhadslkjdadjkh'
+
+print(createDict)
+for key in createDict:
+ print(key, createDict[key])
+
+~~~~~~
+
 
 #### building a website on aws
 
--Python scripts can create html websites using print statements (demo code)
--how to upload files to aws using git
--how to upload files to aws using the command line
+- Python scripts can create html websites using print statements (demo code)
+- how to upload files to aws using git
+- how to upload files to aws using the command line
 
 
 ### and a demo link
