@@ -3,7 +3,20 @@ import cgi
 import cgitb
 import os
 
-DirectoryPath = '/projects/damnit/share/'
+sys.path.insert(0, '/projects/damnit/share/ProjectDAMNIT')
+from damnit_IO import read_json
+from damnit_IO import write_json
+from md5_module import load_md5
+
+from init import make_damnit
+from init import all_file_name_dict
+from add_md5 import add_damnit
+from compare import status_damnit
+from generateNewPatch import find_diff
+from generateNewPatch import load_patch_dict
+
+
+DirectoryPath = '/projects/damnit/share/.damnit'
 
 cgitb.enable()
 
