@@ -6,6 +6,7 @@ import glob
 from md5_module import load_md5
 import json
 import shutil
+from damnit_IO import read_json
 from damnit_IO import write_json
 
 DamnitPath = '.damnit/'
@@ -20,8 +21,12 @@ def find_diff(new_file, old_file):
 # the code in the command line: diff new_file old_file >filename
 # apparently we don't need --unified=0
 
-def load_patch_dict(indivFile, FileNameDictionary, md5Graph_NewToOld):
+def load_patch_dict(indivFile, damnit_path = '.damnit'):
     newMD5 = load_md5(indivFile) # find the md5 of the new file
+    md5Graph_NewToOld = read_json(damnit_path + "/md5Graph_NewToOld.json")
+    # Open and read filenames_dict.json file
+    FileNameDictionary = read_json(damnit_path + "/filenames_dict.json")
+
     if indivFile in FileNameDictionary:
         oldMD5 = FileNameDictionary[indivFile] # for ease of reading, rename the file
         if newMD5 == oldMD5: # if the new md5 is the same as the old md5 do nothing.
@@ -62,18 +67,16 @@ def load_patch_dict(indivFile, FileNameDictionary, md5Graph_NewToOld):
 #    print(FileNameDictionary)
 
 if __name__ == '__main__':
-    fnd = json.load(open(FileNameDictionary_location, "r")) # open the file name dictionary
-    md5dict = json.load(open(md5Graph_NewToOld_location, "r"))
     try:
         Usr_input = sys.argv[1]
         print("User provided file: ", Usr_input)
-        load_patch_dict(Usr_input, fnd, md5dict) # run the load patch function
+        load_patch_dict(Usr_input) # run the load patch function
     
     except IndexError:
         fileList = glob.glob('*') # search for new files
         for indivfile in fileList:
-            load_patch_dict(indivfile, fnd, md5dict) # run the load patch function
-    except:
-        print("fatal Error")
-        sys.exit(1)
+            load_patch_dict(indivfile) # run the load patch function
+    #except:
+     #   print("fatal Error")
+      #  sys.exit(1)
 
