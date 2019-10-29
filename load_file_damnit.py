@@ -31,8 +31,8 @@ print('<body>')
 print('<form method=POST enctype="multipart/form-data" action="./load_file_damnit.py">')
 print('<h1>Please select a file to upload</h1>')
 print('New File <input type=file name=NewFile><br>')
-print('File Name Dictionary <input type=file name=NewFileDict><br>')
-print('md5 Dictionary <input type=file name=NewMd5Dict><br>')
+#print('File Name Dictionary <input type=file name=NewFileDict><br>')
+#print('md5 Dictionary <input type=file name=NewMd5Dict><br>')
 print('<input type=submit value="Upload File", name=button>')
 print('</form>')
 message = 'please select and submit a file'
@@ -53,7 +53,7 @@ if 'NewFile' in form:
          
         open(fn, 'wb').write(fileitem.file.read())
         cks = load_md5(fn)
-        load_patch_dict(fn, filenames_dict.json, md5_dict.json) 
+        status_damnit(fn, DirectoryPath) 
         message = 'The file "' + os.path.basename(fileitem.filename) + '" was uploaded successfully ({})'.format(cks)
         print(fileitem, '<br>')
     else:
