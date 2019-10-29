@@ -6,10 +6,15 @@ import glob
 from md5_module import load_md5
 import json
 import shutil
+from damnit_IO import write_json
+
+md5Graph = {}
+md5Graph_NewToOld = write_json(".damnit/md5Graph_NewToOld.json", md5Graph)
+
 
 DamnitPath = '.damnit/'
 md5Graph_NewToOld_location = DamnitPath + 'md5Graph_NewToOld.json'
-FileNameDictionary_location = DamnitPath + 'quickDict.json'
+FileNameDictionary_location = DamnitPath + 'filenames_dict.json'
 
 
 def find_diff(new_file, old_file):

@@ -27,15 +27,10 @@ def load_md5(new_file):
 
 	return stdout
 
-#print(__name__)
 
 if __name__ == '__main__':
 	new_file = sys.argv[1]
 	print(load_md5(new_file))
 
-
-# if on mac darwin
-# if on linx 
-# md5sum
 
 
