@@ -34,32 +34,33 @@ print('New File <input type=file name=NewFile>')
 print('<input type=submit value="Upload File", name=button>')
 print('</form>')
 message = 'empty message'
-#if 'NewFile' in form:
-#    print('Hello<br>')
+if 'NewFile' in form:
+    print('Hello<br>')
 #    if form['NewFile'].value:
 #        print("did the file load?")
 #        print(form['NewFile'].value)
 #        print("file loaded")
 
-fileitem = form['NewFile']
+    fileitem = form['NewFile']
 
 # Test if the file was uploaded
-if fileitem.filename:
+    if fileitem.filename:
     # strip leading path from file name
     # to avoid directory traversal attacks
-    fn = os.path.basename(fileitem.filename)
+        fn = os.path.basename(fileitem.filename)
   
-  #FileNameDict = 'filenames_dict.json'
-    open('/projects/damnit/share/.damnit/' + fn, 'wb').write(fileitem.file.read())
+        open('/projects/damnit/share/.damnit/' + fn, 'wb').write(fileitem.file.read())
     
-    #message = 'The file "' + FileNameDict + '" was uploaded successfully'
+        message = 'The file "' + fn + '" was uploaded successfully'
 
-else:
-    message = 'please select and submit a file'
+    else:
+        message = 'please select and submit a file'
     
 print("did the file load?<br>")
 print(message)
 print('<h1>Files already in storage</h1>')
+FileNameDict = 'filenames_dict.json'
+open('/projects/damnit/share/.damnit/' + FileNameDict, 'r').read(fileitem.file.read().decode('utf-8'))
 print('</body>')
 print('</html>')
 
