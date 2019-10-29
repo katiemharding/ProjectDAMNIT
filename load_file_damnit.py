@@ -33,9 +33,9 @@ print('<h1>Please select a file to upload</h1>')
 print('New File <input type=file name=NewFile>')
 print('<input type=submit value="Upload File", name=button>')
 print('</form>')
-message = 'empty message'
+message = 'please select and submit a file'
 if 'NewFile' in form:
-    print('Hello<br>')
+    print('Thank you for loading a file<br>')
 #    if form['NewFile'].value:
 #        print("did the file load?")
 #        print(form['NewFile'].value)
@@ -48,19 +48,17 @@ if 'NewFile' in form:
     # strip leading path from file name
     # to avoid directory traversal attacks
         fn = os.path.basename(fileitem.filename)
-  
+         
         open('/projects/damnit/share/.damnit/' + fn, 'wb').write(fileitem.file.read())
     
         message = 'The file "' + fn + '" was uploaded successfully'
-
+        print(fileitem, '<br>')
+        status_damnit(str(fileitem))
     else:
-        message = 'please select and submit a file'
+        message = 'please select and submit another file'
     
 print("did the file load?<br>")
 print(message)
-print('<h1>Files already in storage</h1>')
-FileNameDict = 'filenames_dict.json'
-open('/projects/damnit/share/.damnit/' + FileNameDict, 'r').write(FileNameDict.file.read().decode('utf-8'))
 print('</body>')
 print('</html>')
 
