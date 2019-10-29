@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import cgi
 import cgitb
+cgitb.enable()
 import os
+import sys
 
 sys.path.insert(0, '/projects/damnit/share/ProjectDAMNIT')
 from damnit_IO import read_json
@@ -16,9 +18,8 @@ from generateNewPatch import find_diff
 from generateNewPatch import load_patch_dict
 
 
-DirectoryPath = '/projects/damnit/share/.damnit'
+DirectoryPath = '/projects/damnit/share/'
 
-cgitb.enable()
 
 form = cgi.FieldStorage()  # parse form data
 
