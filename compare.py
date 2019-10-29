@@ -14,9 +14,9 @@ from md5_module import load_md5
 def status_damnit(new_file, damnit_path = '.damnit'):
 	# Check if file exists
 	if os.path.exists(new_file):
-		print ('File is real')
+		print ('File is real<br>')
 	else:
-		raise OSError('File is not real')
+		raise OSError('File is not real<br>')
 
 	# Convert new file into md5
 	md5 = load_md5(new_file)
@@ -30,16 +30,16 @@ def status_damnit(new_file, damnit_path = '.damnit'):
 
 	# Check if md5 exists in md5_dict.json file
 	if md5 in original_md5Graph and md5 in filenames_dict.values() and new_file in filenames_dict:
-		print('File exists in database')
+		print('File exists in database<br>')
 		print(new_file)
 	elif new_file in filenames_dict and md5 not in original_md5Graph:
-		print('File needs to be updated.')
+		print('File needs to be updated.<br>')
 		print(new_file)
 	elif md5 in original_md5Graph and new_file not in filenames_dict:
-		print('File name has changed and needs updated.')
+		print('File name has changed and needs updated.<br>')
 		print(new_file)
 	else:
-		print('File does not exist in database')
+		print('File does not exist in database<br>')
 		print(new_file)
 
 	return status_damnit
