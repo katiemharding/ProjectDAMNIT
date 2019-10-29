@@ -18,7 +18,7 @@ from generateNewPatch import find_diff
 from generateNewPatch import load_patch_dict
 
 
-DirectoryPath = '/projects/damnit/share/'
+DirectoryPath = '/projects/damnit/share/.damnit'
 
 
 form = cgi.FieldStorage()  # parse form data
@@ -53,7 +53,7 @@ if 'NewFile' in form:
     
         message = 'The file "' + fn + '" was uploaded successfully'
         print(fileitem, '<br>')
-        status_damnit(str(fileitem))
+        status_damnit(fileitem.filename, DirectoryPath)
     else:
         message = 'please select and submit another file'
     
