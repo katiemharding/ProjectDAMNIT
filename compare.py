@@ -11,7 +11,7 @@ from md5_module import load_md5
 # Define imported file name
 #new_file = sys.argv[1]
 
-def status_damnit():
+def status_damnit(new_file, damnit_path = '.damnit'):
 	# Check if file exists
 	if os.path.exists(new_file):
 		print ('File is real')
@@ -23,10 +23,10 @@ def status_damnit():
 
 
 	# Open and read md5Graph_NewToOld.json file
-	original_md5Graph = read_json(".damnit/md5Graph_NewToOld.json")
+	original_md5Graph = read_json(damnit_path + "/md5Graph_NewToOld.json")
 
 	# Open and read filenames_dict.json file
-	filenames_dict = read_json(".damnit/filenames_dict.json")
+	filenames_dict = read_json(damnit_path + "/filenames_dict.json")
 
 	# Check if md5 exists in md5_dict.json file
 	if md5 in original_md5Graph and md5 in filenames_dict.values() and new_file in filenames_dict:
