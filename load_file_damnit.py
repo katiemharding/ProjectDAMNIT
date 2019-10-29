@@ -60,7 +60,7 @@ print("did the file load?<br>")
 print(message)
 print('<h1>Files already in storage</h1>')
 FileNameDict = 'filenames_dict.json'
-open('/projects/damnit/share/.damnit/' + FileNameDict, 'r').read(fileitem.file.read().decode('utf-8'))
+open('/projects/damnit/share/.damnit/' + FileNameDict, 'r').write(FileNameDict.file.read().decode('utf-8'))
 print('</body>')
 print('</html>')
 
