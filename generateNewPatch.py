@@ -59,7 +59,7 @@ def load_patch_dict(indivFile, FileNameDictionary, md5Graph_NewToOld):
         with open(md5Graph_NewToOld_location, "w") as newPatch:
             json.dump(md5Graph_NewToOld, newPatch) # open the file as write, save new dict
             print("new file", indivFile) 
-    print(FileNameDictionary)
+#    print(FileNameDictionary)
 
 if __name__ == '__main__':
     fnd = json.load(open(FileNameDictionary_location, "r")) # open the file name dictionary
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         load_patch_dict(Usr_input, fnd, md5dict) # run the load patch function
     
     except IndexError:
-        fileList = glob.glob('*.fasta') # search for new files
+        fileList = glob.glob('*') # search for new files
         for indivfile in fileList:
             load_patch_dict(indivfile, fnd, md5dict) # run the load patch function
     except:
