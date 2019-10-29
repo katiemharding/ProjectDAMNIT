@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
 	new_file = sys.argv[1]
 
-	status_damnit()
+	status_damnit(new_file)
 
 
 
