@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import cgi
 import cgitb
+cgitb.enable()
 import os
+import sys
 
 sys.path.insert(0, '/projects/damnit/share/ProjectDAMNIT')
 from damnit_IO import read_json
@@ -16,9 +18,8 @@ from generateNewPatch import find_diff
 from generateNewPatch import load_patch_dict
 
 
-DirectoryPath = '/projects/damnit/share/.damnit'
+DirectoryPath = '/projects/damnit/share/'
 
-cgitb.enable()
 
 form = cgi.FieldStorage()  # parse form data
 
@@ -35,31 +36,31 @@ print('</form>')
 message = 'empty message'
 if 'NewFile' in form:
     print('Hello<br>')
-    if form['NewFile'].value:
-        print("did the file load?")
-        print(form['NewFile'].value)
-        print("file loaded")
+#    if form['NewFile'].value:
+#        print("did the file load?")
+#        print(form['NewFile'].value)
+#        print("file loaded")
 
-#fileitem = form['NewFile']
+    fileitem = form['NewFile']
 
 # Test if the file was uploaded
-#if fileitem.filename:
-
+    if fileitem.filename:
     # strip leading path from file name
     # to avoid directory traversal attacks
- #   fn = os.path.basename(fileitem.filename)
+        fn = os.path.basename(fileitem.filename)
   
-  #FileNameDict = 'filenames_dict.json'
-   # open('/projects/damnit/share/.damnit/' + FileNameDict, 'r').write(fileitem.file.read())
+        open('/projects/damnit/share/.damnit/' + fn, 'wb').write(fileitem.file.read())
     
-    #message = 'The file "' + FileNameDict + '" was uploaded successfully'
+        message = 'The file "' + fn + '" was uploaded successfully'
 
-else:
-    message = 'please select and submit a file'
+    else:
+        message = 'please select and submit a file'
     
 print("did the file load?<br>")
 print(message)
 print('<h1>Files already in storage</h1>')
+FileNameDict = 'filenames_dict.json'
+open('/projects/damnit/share/.damnit/' + FileNameDict, 'r').write(FileNameDict.file.read().decode('utf-8'))
 print('</body>')
 print('</html>')
 
