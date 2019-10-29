@@ -14,7 +14,7 @@ def load_md5(new_file):
 		md5 = subprocess.run(["md5sum",new_file], stdout=subprocess.PIPE )
 		stdout = md5.stdout
 		stdout = stdout.split()
-		stdout = stdout[3]
+		stdout = stdout[0]
 		stdout = stdout.decode("utf-8")
 	elif shutil.which("md5"):
 		md5 = subprocess.run(["md5",new_file], stdout=subprocess.PIPE )
