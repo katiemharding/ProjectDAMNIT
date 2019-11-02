@@ -58,5 +58,5 @@ for key in createDict:
 - how to upload files to aws using the command line
 
 
-### and a [demo link](https://www.google.com)
+### [Link to the Damnit file loading website](http://damnit.programmingforbiology.org/cgi-bin/load_file_damnit.py)
 
