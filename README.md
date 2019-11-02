@@ -58,5 +58,5 @@ for key in createDict:
 - how to upload files to aws using the command line
 
 
-### and a demo link
+### and a [demo link](https://www.google.com)
 
